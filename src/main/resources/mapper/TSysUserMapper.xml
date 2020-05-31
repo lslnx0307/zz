@@ -1,100 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lsl.zz.mapper.TSysUserMapper">
-  <resultMap id="BaseResultMap" type="com.lsl.zz.model.TSysUser">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="login_account" jdbcType="VARCHAR" property="loginAccount" />
-    <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
-    <result column="last_login" jdbcType="TIMESTAMP" property="lastLogin" />
-    <result column="lock" jdbcType="SMALLINT" property="lock" />
-  </resultMap>
-  <sql id="Base_Column_List">
+<resultMap id="BaseResultMap" type="com.lsl.zz.model.TSysUser">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="login_account" jdbcType="VARCHAR" property="loginAccount"/>
+    <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+    <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd"/>
+    <result column="last_login" jdbcType="TIMESTAMP" property="lastLogin"/>
+    <result column="lock" jdbcType="SMALLINT" property="lock"/>
+</resultMap>
+
+<resultMap id="UserVOMap" type="com.lsl.zz.VO.system.UserVO">
+    <id column="id" jdbcType="INTEGER" property="id"/>
+    <result column="login_account" jdbcType="VARCHAR" property="loginAccount"/>
+    <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+    <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd"/>
+    <result column="last_login" jdbcType="TIMESTAMP" property="lastLogin"/>
+    <result column="lock" jdbcType="SMALLINT" property="lock"/>
+    <collection property="roleList" ofType="com.lsl.zz.model.TSysRole" column="id" select=""></collection>
+</resultMap>
+<sql id="Base_Column_List">
     id, login_account, real_name, login_pwd, last_login, lock
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
+<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
     from t_sys_user
     where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+</select>
+<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_sys_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.lsl.zz.model.TSysUser">
-    insert into t_sys_user (id, login_account, real_name, 
+<insert id="insert" parameterType="com.lsl.zz.model.TSysUser">
+    insert into t_sys_user (id, login_account, real_name,
       login_pwd, last_login, lock
       )
-    values (#{id,jdbcType=INTEGER}, #{loginAccount,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{loginAccount,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
       #{loginPwd,jdbcType=VARCHAR}, #{lastLogin,jdbcType=TIMESTAMP}, #{lock,jdbcType=SMALLINT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.lsl.zz.model.TSysUser">
+<insert id="insertSelective" parameterType="com.lsl.zz.model.TSysUser">
     insert into t_sys_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="loginAccount != null">
-        login_account,
-      </if>
-      <if test="realName != null">
-        real_name,
-      </if>
-      <if test="loginPwd != null">
-        login_pwd,
-      </if>
-      <if test="lastLogin != null">
-        last_login,
-      </if>
-      <if test="lock != null">
-        lock,
-      </if>
+        <if test="id != null">
+            id,
+        </if>
+        <if test="loginAccount != null">
+            login_account,
+        </if>
+        <if test="realName != null">
+            real_name,
+        </if>
+        <if test="loginPwd != null">
+            login_pwd,
+        </if>
+        <if test="lastLogin != null">
+            last_login,
+        </if>
+        <if test="lock != null">
+            lock,
+        </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="loginAccount != null">
-        #{loginAccount,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="loginPwd != null">
-        #{loginPwd,jdbcType=VARCHAR},
-      </if>
-      <if test="lastLogin != null">
-        #{lastLogin,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lock != null">
-        #{lock,jdbcType=SMALLINT},
-      </if>
+        <if test="id != null">
+            #{id,jdbcType=INTEGER},
+        </if>
+        <if test="loginAccount != null">
+            #{loginAccount,jdbcType=VARCHAR},
+        </if>
+        <if test="realName != null">
+            #{realName,jdbcType=VARCHAR},
+        </if>
+        <if test="loginPwd != null">
+            #{loginPwd,jdbcType=VARCHAR},
+        </if>
+        <if test="lastLogin != null">
+            #{lastLogin,jdbcType=TIMESTAMP},
+        </if>
+        <if test="lock != null">
+            #{lock,jdbcType=SMALLINT},
+        </if>
     </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lsl.zz.model.TSysUser">
+</insert>
+<update id="updateByPrimaryKeySelective" parameterType="com.lsl.zz.model.TSysUser">
     update t_sys_user
     <set>
-      <if test="loginAccount != null">
-        login_account = #{loginAccount,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        real_name = #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="loginPwd != null">
-        login_pwd = #{loginPwd,jdbcType=VARCHAR},
-      </if>
-      <if test="lastLogin != null">
-        last_login = #{lastLogin,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lock != null">
-        lock = #{lock,jdbcType=SMALLINT},
-      </if>
+        <if test="loginAccount != null">
+            login_account = #{loginAccount,jdbcType=VARCHAR},
+        </if>
+        <if test="realName != null">
+            real_name = #{realName,jdbcType=VARCHAR},
+        </if>
+        <if test="loginPwd != null">
+            login_pwd = #{loginPwd,jdbcType=VARCHAR},
+        </if>
+        <if test="lastLogin != null">
+            last_login = #{lastLogin,jdbcType=TIMESTAMP},
+        </if>
+        <if test="lock != null">
+            lock = #{lock,jdbcType=SMALLINT},
+        </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.lsl.zz.model.TSysUser">
+</update>
+<update id="updateByPrimaryKey" parameterType="com.lsl.zz.model.TSysUser">
     update t_sys_user
     set login_account = #{loginAccount,jdbcType=VARCHAR},
       real_name = #{realName,jdbcType=VARCHAR},
@@ -103,106 +113,12 @@
       lock = #{lock,jdbcType=SMALLINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <resultMap id="BaseResultMap" type="com.lsl.zz.model.TSysUser">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="login_account" jdbcType="VARCHAR" property="loginAccount" />
-    <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="login_pwd" jdbcType="VARCHAR" property="loginPwd" />
-    <result column="last_login" jdbcType="TIMESTAMP" property="lastLogin" />
-    <result column="lock" jdbcType="SMALLINT" property="lock" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, login_account, real_name, login_pwd, last_login, lock
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from t_sys_user
-    where id = #{id,jdbcType=INTEGER}
+
+<select id="getUserInfoByUserName" parameterType="java.lang.String" resultType="com.lsl.zz.VO.system.UserVO">
+    SELECT c.*, sr.id as roleId, sr.role_name as roleName
+    from t_sys_user c
+    LEFT JOIN t_sys_user_role sur on sur.user_id = c.id
+    LEFT JOIN t_sys_role sr on sr.id = sur.role_id
+    where c.login_account = #{loginAccount,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from t_sys_user
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.lsl.zz.model.TSysUser">
-    insert into t_sys_user (id, login_account, real_name, 
-      login_pwd, last_login, lock
-      )
-    values (#{id,jdbcType=INTEGER}, #{loginAccount,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
-      #{loginPwd,jdbcType=VARCHAR}, #{lastLogin,jdbcType=TIMESTAMP}, #{lock,jdbcType=SMALLINT}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.lsl.zz.model.TSysUser">
-    insert into t_sys_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="loginAccount != null">
-        login_account,
-      </if>
-      <if test="realName != null">
-        real_name,
-      </if>
-      <if test="loginPwd != null">
-        login_pwd,
-      </if>
-      <if test="lastLogin != null">
-        last_login,
-      </if>
-      <if test="lock != null">
-        lock,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="loginAccount != null">
-        #{loginAccount,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="loginPwd != null">
-        #{loginPwd,jdbcType=VARCHAR},
-      </if>
-      <if test="lastLogin != null">
-        #{lastLogin,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lock != null">
-        #{lock,jdbcType=SMALLINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.lsl.zz.model.TSysUser">
-    update t_sys_user
-    <set>
-      <if test="loginAccount != null">
-        login_account = #{loginAccount,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        real_name = #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="loginPwd != null">
-        login_pwd = #{loginPwd,jdbcType=VARCHAR},
-      </if>
-      <if test="lastLogin != null">
-        last_login = #{lastLogin,jdbcType=TIMESTAMP},
-      </if>
-      <if test="lock != null">
-        lock = #{lock,jdbcType=SMALLINT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.lsl.zz.model.TSysUser">
-    update t_sys_user
-    set login_account = #{loginAccount,jdbcType=VARCHAR},
-      real_name = #{realName,jdbcType=VARCHAR},
-      login_pwd = #{loginPwd,jdbcType=VARCHAR},
-      last_login = #{lastLogin,jdbcType=TIMESTAMP},
-      lock = #{lock,jdbcType=SMALLINT}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
 </mapper>

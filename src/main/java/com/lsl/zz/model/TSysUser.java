@@ -13,7 +13,7 @@ public class TSysUser {
 
     private Date lastLogin;
 
-    private Short lock;
+    private Boolean lock;
 
     public Integer getId() {
         return id;
@@ -55,11 +55,11 @@ public class TSysUser {
         this.lastLogin = lastLogin;
     }
 
-    public Short getLock() {
+    public Boolean getLock() {
         return lock;
     }
 
-    public void setLock(Short lock) {
+    public void setLock(Boolean lock) {
         this.lock = lock;
     }
 }

@@ -1,5 +1,6 @@
 package com.lsl.zz.mapper;
 
+import com.lsl.zz.VO.system.UserVO;
 import com.lsl.zz.model.TSysUser;
 
 public interface TSysUserMapper {
@@ -14,4 +15,11 @@ public interface TSysUserMapper {
     int updateByPrimaryKeySelective(TSysUser record);
 
     int updateByPrimaryKey(TSysUser record);
+
+    /**
+     * 根据用户名查询用户信息
+     * @param loginAccount
+     * @return
+     */
+    UserVO getUserInfoByUserName(String loginAccount);
 }
