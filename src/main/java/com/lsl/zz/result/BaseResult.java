@@ -1,13 +1,14 @@
 package com.lsl.zz.result;
 
+import java.io.Serializable;
+
 import lombok.Builder;
 import lombok.Data;
-
-import java.io.Serializable;
 
 /**
  *
  * 响应数据模型
+ * 
  * @author shiliang.li
  * @date 2020/5/27
  */
@@ -16,6 +17,7 @@ import java.io.Serializable;
 public class BaseResult<T> implements Serializable {
 
     private static final long serialVersionUID = -3267985926875958356L;
+
     /**
      * 结果集
      */
@@ -35,5 +37,17 @@ public class BaseResult<T> implements Serializable {
      * 接口响应码
      */
     private String code;
+
+    public static<T> BaseResult<T> success(T data) {
+        BaseResult baseResult = new BaseResult(data, true, ResponseCodeEnum.SUCCESS.getCode(),
+                ResponseCodeEnum.SUCCESS.getMsg());
+        return baseResult;
+    }
+
+    public static<T> BaseResult<T> fail(T data) {
+        BaseResult baseResult = new BaseResult(data, false, ResponseCodeEnum.FAIL.getCode(),
+                ResponseCodeEnum.FAIL.getMsg());
+        return baseResult;
+    }
 
 }

@@ -1,6 +1,9 @@
 package com.lsl.zz.mapper;
 
-import com.lsl.zz.VO.system.UserVO;
+import java.util.List;
+
+import com.lsl.zz.VO.system.UserRequestVO;
+import com.lsl.zz.VO.system.UserResponseVO;
 import com.lsl.zz.model.TSysUser;
 
 public interface TSysUserMapper {
@@ -21,5 +24,12 @@ public interface TSysUserMapper {
      * @param loginAccount
      * @return
      */
-    UserVO getUserInfoByUserName(String loginAccount);
+    UserResponseVO getUserInfoByUserName(String loginAccount);
+
+    /**
+     * 用户列表
+     * @param userRequestVO
+     * @return
+     */
+    List<UserResponseVO> listUser(UserRequestVO userRequestVO);
 }

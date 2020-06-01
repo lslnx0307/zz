@@ -1,6 +1,5 @@
 package com.lsl.zz.config;
 
-import com.lsl.zz.secutiry.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.lsl.zz.secutiry.UserDetailServiceImpl;
 
 /**
  * @author shiliang.li
@@ -25,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/demo").hasRole("admin").anyRequest().authenticated().and().formLogin().and().httpBasic();
+        http.authorizeRequests().antMatchers("/zz/**").hasRole("admin").anyRequest().authenticated().and().formLogin().and().httpBasic();
     }
 
     @Override
@@ -48,5 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new BCryptPasswordEncoder().encode("123456"));
     }
 }

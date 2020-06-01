@@ -1,12 +1,12 @@
 package com.lsl.zz.VO.system;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 用户的所有信息vo
@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserVO implements Serializable {
+public class UserResponseVO implements Serializable {
 
     private static final long serialVersionUID = 3126486162688765770L;
     private Integer id;

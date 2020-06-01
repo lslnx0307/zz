@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.lsl.zz.mapper")
+@MapperScan(basePackages = {"com.lsl.zz.mapper"})
 public class ZzApplication {
 
     public static void main(String[] args) {
