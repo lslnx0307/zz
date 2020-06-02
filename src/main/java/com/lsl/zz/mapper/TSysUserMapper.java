@@ -32,4 +32,11 @@ public interface TSysUserMapper {
      * @return
      */
     List<UserResponseVO> listUser(UserRequestVO userRequestVO);
+
+    /**
+     * 用户列表的count
+     * @param userRequestVO
+     * @return
+     */
+    Integer countUser(UserRequestVO userRequestVO);
 }

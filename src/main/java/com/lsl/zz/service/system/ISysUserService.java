@@ -1,6 +1,6 @@
 package com.lsl.zz.service.system;
 
-import com.github.pagehelper.PageInfo;
+import com.lsl.zz.VO.PageInfo;
 import com.lsl.zz.VO.system.UserRequestVO;
 import com.lsl.zz.result.BaseResult;
 

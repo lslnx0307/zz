@@ -134,7 +134,21 @@
                 and t1.login_account = #{loginAccount, jdbcType=VARCHAR}
             </if>
         </where>
-        order by t1.id desc
+        order by t1.id desc limit #{limit} offset #{offset}
+
+    </select>
+
+    <select id="countUser" resultType="java.lang.Integer" parameterType="com.lsl.zz.VO.system.UserRequestVO">
+        select count(*) from t_sys_user t1
+        <where>
+            <if test="userName != null">
+                t1.real_name = #{userName, jdbcType=VARCHAR}
+            </if>
+            <if test="loginAccount != null">
+                and t1.login_account = #{loginAccount, jdbcType=VARCHAR}
+            </if>
+        </where>
+
 
     </select>
 </mapper>
