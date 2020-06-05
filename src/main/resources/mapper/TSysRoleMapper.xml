@@ -17,6 +17,7 @@
     from t_sys_role
     where id = #{id,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_sys_role
     where id = #{id,jdbcType=INTEGER}
@@ -90,4 +91,16 @@
       del_flag = #{delFlag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="listRole" resultMap="BaseResultMap" parameterType="com.lsl.zz.VO.system.RoleRequestVO">
+    select
+    <include refid="Base_Column_List" />
+    from t_sys_role order by id desc limit #{limit} offset #{offset}
+
+  </select>
+  <select id="countRole" resultType="java.lang.Integer" parameterType="com.lsl.zz.VO.system.RoleRequestVO">
+    select
+    count(*)
+    from t_sys_role
+  </select>
 </mapper>

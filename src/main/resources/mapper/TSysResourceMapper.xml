@@ -18,7 +18,8 @@
     from t_sys_resource
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_sys_resource
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -103,4 +104,12 @@
       del_flag = #{delFlag,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="listMenu" resultMap="BaseResultMap" parameterType="com.lsl.zz.VO.system.MenuRequestVO">
+    select * from t_sys_resource order by id desc limit #{limit} offset #{offset}
+  </select>
+
+  <select id="countMenu" resultType="java.lang.Integer" parameterType="com.lsl.zz.VO.system.MenuRequestVO">
+    select count(*) from t_sys_resource
+  </select>
 </mapper>

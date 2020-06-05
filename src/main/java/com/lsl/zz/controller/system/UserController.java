@@ -21,9 +21,14 @@ public class UserController {
     @Autowired
     private ISysUserService userService;
 
-    @PostMapping("/user/listUser")
-    public BaseResult listUser(@RequestBody UserRequestVO userRequestVO) {
+    @PostMapping("/user/list")
+    public BaseResult list(@RequestBody UserRequestVO userRequestVO) {
         return userService.listUser(userRequestVO);
+    }
+
+    @PostMapping("/user/add")
+    public BaseResult add(@RequestBody UserRequestVO userRequestVO) {
+        return userService.addUser(userRequestVO);
     }
 
 }

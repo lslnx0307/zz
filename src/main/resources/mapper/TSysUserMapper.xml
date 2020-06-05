@@ -125,7 +125,7 @@
         where c.login_account = #{loginAccount,jdbcType=VARCHAR}
   </select>
     <select id="listUser" resultType="com.lsl.zz.VO.system.UserResponseVO" parameterType="com.lsl.zz.VO.system.UserRequestVO">
-        select * from t_sys_user t1
+        select t1.id as id, t1.login_account as loginAccount, t1.real_name as realName from t_sys_user t1
         <where>
             <if test="userName != null">
                 t1.real_name = #{userName, jdbcType=VARCHAR}
